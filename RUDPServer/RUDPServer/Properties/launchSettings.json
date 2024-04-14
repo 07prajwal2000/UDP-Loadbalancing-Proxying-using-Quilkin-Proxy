@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "RUDPServer": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

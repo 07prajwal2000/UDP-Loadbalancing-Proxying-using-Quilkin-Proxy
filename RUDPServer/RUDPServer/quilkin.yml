@@ -1,0 +1,28 @@
+# 172.18.0.3
+# 172.18.0.2
+
+version: v1alpha1
+id: my-proxy # An identifier for the proxy instance.
+filters:
+  - name: quilkin.filters.capture.v1alpha1.Capture
+    config:
+      metadataKey: route-token
+      prefix:
+        size: 4
+        remove: true
+  - name: quilkin.filters.token_router.v1alpha1.TokenRouter
+    config:
+        metadataKey: route-token
+
+clusters: # grouping of clusters
+  - endpoints: # array of potential endpoints to send on traffic to
+    - address: udpdemo:5005
+      metadata: # Metadata associated with the endpoint
+        quilkin.dev:
+          tokens:
+            - czAwMQ== # s001 in string
+    - address: udpdemo1:5005
+      metadata: # Metadata associated with the endpoint
+        quilkin.dev:
+          tokens:
+            - czAwMg== # s002 in string
